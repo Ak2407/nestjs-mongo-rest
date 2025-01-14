@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { OrgsService } from './org.service';
 import { Org } from './org.schema';
+import { CreateOrgDto } from './dto/createOrg.dto';
 
 @Controller('orgs')
 export class OrgsController {
@@ -16,7 +17,7 @@ export class OrgsController {
 
   // Creating a new Org
   @Post()
-  async create(@Body() org: Org): Promise<Org> {
+  async create(@Body() org: CreateOrgDto): Promise<CreateOrgDto> {
     return this.orgsService.create(org);
   }
 

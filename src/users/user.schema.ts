@@ -16,7 +16,7 @@ export class User {
   @Prop({ required: true })
   age: number;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Org' })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Org', required: true })
   org: Org;
 }
 

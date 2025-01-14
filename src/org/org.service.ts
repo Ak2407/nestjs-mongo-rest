@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Org, OrgDocument } from './org.schema';
+import { Org } from './org.schema';
+import { CreateOrgDto } from './dto/createOrg.dto';
 
 @Injectable()
 export class OrgsService {
-  // constructor(@InjectModel(Cat.name) private catModel: Model<Cat>) {}
-  constructor(@InjectModel(Org.name) private orgModel: Model<OrgDocument>) {}
+  constructor(@InjectModel(Org.name) private orgModel: Model<Org>) {}
 
-  async create(org: Org): Promise<Org> {
+  async create(org: CreateOrgDto): Promise<Org> {
     const newOrg = new this.orgModel(org);
     return newOrg.save();
   }
