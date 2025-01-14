@@ -34,6 +34,13 @@ export class UsersService {
     return this.userModel.findById(id).exec();
   }
 
+  async findByOrg(org: string): Promise<User[]> {
+    // Make it so that case doesn't matter
+    org = org.toLowerCase();
+    const foundOrg = await this.orgModel.find({ name: org }).exec();
+    return this.userModel.find({ org: foundOrg[0]._id }).exec();
+  }
+
   async update(id: string, user: User): Promise<User> {
     return this.userModel.findByIdAndUpdate(id, user, { new: true }).exec();
   }

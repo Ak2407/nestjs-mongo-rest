@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { UsersService } from './user.service';
 import { User } from './user.schema';
@@ -18,6 +19,12 @@ export class UsersController {
   @Post()
   async create(@Body() user: User): Promise<User> {
     return this.usersService.create(user);
+  }
+
+  // Finding by Org Name
+  @Get()
+  async findByOrg(@Query('org') org: string): Promise<User[]> {
+    return this.usersService.findByOrg(org);
   }
 
   // Finding all Users
