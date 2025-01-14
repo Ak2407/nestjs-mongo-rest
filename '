@@ -19,7 +19,7 @@ export class UsersService {
     // Adding the new user to the org
     const org = await this.orgModel.findById(user.org);
     if (org) {
-      org.users.push(newUser._id.toString());
+      org.users.push(newUser._id);
       await org.save();
     }
 

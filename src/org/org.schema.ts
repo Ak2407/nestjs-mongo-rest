@@ -10,6 +10,9 @@ export class Org {
 
   @Prop()
   description: string;
+
+  @Prop()
+  users: string[];
 }
 
 export const OrgSchema = SchemaFactory.createForClass(Org);
