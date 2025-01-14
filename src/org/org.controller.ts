@@ -31,22 +31,30 @@ export class OrgsController {
   // Finding by ID
   @Get(':id')
   async findById(@Param('id') id: string): Promise<Org> {
-    const findUser = await this.orgsService.findById(id);
-    if (!findUser) {
-      throw new HttpException('User not found', 404);
+    const findOrg = await this.orgsService.findById(id);
+    if (!findOrg) {
+      throw new HttpException('Organization not found', 404);
     }
-    return findUser;
+    return findOrg;
   }
 
   // Updating
   @Patch(':id')
   async update(@Param('id') id: string, @Body() org: Org): Promise<Org> {
-    return this.orgsService.update(id, org);
+    const findOrg = await this.orgsService.update(id, org);
+    if (!findOrg) {
+      throw new HttpException('Organization not found', 404);
+    }
+    return findOrg;
   }
 
   // Deleting
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<Org> {
-    return this.orgsService.delete(id);
+    const findOrg = await this.orgsService.delete(id);
+    if (!findOrg) {
+      throw new HttpException('Organization not found', 404);
+    }
+    return findOrg;
   }
 }

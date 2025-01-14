@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { User } from './user.schema';
 import { Org } from 'src/org/org.schema';
 import { CreateUserDto } from './dto/createUser.dto';
+import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Injectable()
 export class UsersService {
@@ -42,7 +43,7 @@ export class UsersService {
     return this.userModel.find({ org: foundOrg[0]._id }).exec();
   }
 
-  async update(id: string, user: User): Promise<User> {
+  async update(id: string, user: UpdateUserDto): Promise<User> {
     return this.userModel.findByIdAndUpdate(id, user, { new: true }).exec();
   }
 

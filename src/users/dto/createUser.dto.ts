@@ -15,6 +15,5 @@ export class CreateUserDto {
   age: number;
 
   @IsNotEmpty()
-  @IsString()
   org?: Org;
 }
