@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
   Param,
   Patch,
   Post,
@@ -30,7 +31,11 @@ export class OrgsController {
   // Finding by ID
   @Get(':id')
   async findById(@Param('id') id: string): Promise<Org> {
-    return this.orgsService.findById(id);
+    const findUser = await this.orgsService.findById(id);
+    if (!findUser) {
+      throw new HttpException('User not found', 404);
+    }
+    return findUser;
   }
 
   // Updating
